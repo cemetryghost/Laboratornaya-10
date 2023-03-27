@@ -1,11 +1,15 @@
-﻿namespace ConsoleApp10
+using System;
+using System.Collections.Generic;
+using static ConsoleApp10.Garage;
+
+namespace ConsoleApp10
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             Car car1 = new Car("Лада Калина", "Белая", "о778оо");
-            Car car2 = new Car("Хонда Аккорд", "Черная","a999дд");
+            Car car2 = new Car("Хонда Аккорд", "Черная", "a999дд");
             Car car3 = new Car("Жигули", "Баклажановая", "к000кс");
 
             Garage garage = new Garage();
@@ -18,10 +22,12 @@
 
             Washer washer = new Washer();
 
-            garage.WashCars(washer.Wash);
+            WashDelegate washDelegate = new WashDelegate(washer.Wash);
 
+            garage.WashCars(washDelegate);
         }
     }
+
     class Car
     {
         public string name { get; set; }
